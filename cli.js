@@ -19,41 +19,46 @@ if (args.h) {
 }
 
 let timezone = moment.tz.guest()
-let longitude = 0;
-let latitude = 0; 
-let day = 1;
+let longitude = 1
+let latitude = 1
+let day = 1
 
 // latitude 
-if (args.n) {
+if ("n" in args) {
     latitude = args.n
 }
-else if (args.s) {
+else if ("s" in args) {
     latitude = -args.s
+} else {
+    console.log("Latitude must be in range")
 }
 //longitude 
-if (args.e) {
+if ("e" in args) {
     longitude = args.e
 }
-else if (args.w) {
+else if ("w" in args) {
     longitude = -args.w
 }
+else {
+    console.log("Longitude must be in range")
+}
 //timezone
-if (args.z) {
+if ("z" in args) {
     timezone = args.z
 }
 // day
-if (args.d) {
+if ("d" in args) {
     day = args.d
 }
 
 // Make a request
 let url = 'https://api.open-meteo.com/v1/forecast?' + 'latitude=' + latitude + '&longitude=' + longitude + "&timezone=" + timezone + "&daily=precipitation_hours"
-const response = await fetch(url);
+const response = await fetch(url)
 
 // Get the data from the request
-const data = await response.json();
+const data = await response.json()
 
-if (args.j) {
+if ("j" in args) {
     console.log(data)
     exit(0)
 }
@@ -66,10 +71,10 @@ if (precipitation > 0) {
 else {
     result = "You probably won't need your galoshes "
 }
-if (days == 0) {
+if (day == 0) {
   result += "today."
-} else if (days > 1) {
-  result += "in " + days + " days."
+} else if (day > 1) {
+  result += "in " + day + " days."
 } else {
   result += "tomorrow."
 }
