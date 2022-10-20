@@ -60,22 +60,21 @@ const data = await response.json()
 
 if ("j" in args) {
     console.log(data)
-    exit(0)
-}
-
-let precipitation = data.daily.precipitation_hours[day]
-let result = ""
-if (precipitation > 0) {
-    result = "You might need your galoshes "
-}
-else {
-    result = "You probably won't need your galoshes "
-}
-if (day == 0) {
-  result += "today."
-} else if (day > 1) {
-  result += "in " + day + " days."
 } else {
-  result += "tomorrow."
+    let precipitation = data.daily.precipitation_hours[day]
+    let result = ""
+    if (precipitation > 0) {
+        result = "You might need your galoshes "
+    }
+    else {
+        result = "You probably won't need your galoshes "
+    }
+    if (day == 0) {
+    result += "today."
+    } else if (day > 1) {
+    result += "in " + day + " days."
+    } else {
+    result += "tomorrow."
+    }
+    console.log(result)
 }
-console.log(result)
