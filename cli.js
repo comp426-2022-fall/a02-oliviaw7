@@ -18,7 +18,7 @@ if (args.h) {
     exit(0)
 }
 
-let timezone = moment.tz.guest()
+let timezone = moment.tz.guess()
 let longitude = 1
 let latitude = 1
 let day = 1
